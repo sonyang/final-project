@@ -10,10 +10,10 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Category" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Publisher" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Author" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ISBN10" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="ISBN13" Type="nchar" MaxLength="13" Nullable="false" />
           <Property Name="CoverArt" Type="nvarchar" MaxLength="256" />
@@ -37,6 +37,7 @@
           <Property Name="Subject" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Body" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Rating" Type="decimal" Precision="2" Scale="1" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -56,7 +57,7 @@
           <Property Name="UserID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="GroupID" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Review_Book">
+        <Association Name="FK_Review_BookID">
           <End Role="Book" Type="Self.Book" Multiplicity="1" />
           <End Role="Review" Type="Self.Review" Multiplicity="*" />
           <ReferentialConstraint>
@@ -68,7 +69,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Review_User">
+        <Association Name="FK_Review_UserID">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="Review" Type="Self.Review" Multiplicity="*" />
           <ReferentialConstraint>
@@ -110,11 +111,11 @@
           <EntitySet Name="Review" EntityType="Self.Review" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserGroup" EntityType="Self.UserGroup" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Review_Book" Association="Self.FK_Review_Book">
+          <AssociationSet Name="FK_Review_BookID" Association="Self.FK_Review_BookID">
             <End Role="Book" EntitySet="Book" />
             <End Role="Review" EntitySet="Review" />
           </AssociationSet>
-          <AssociationSet Name="FK_Review_User" Association="Self.FK_Review_User">
+          <AssociationSet Name="FK_Review_UserID" Association="Self.FK_Review_UserID">
             <End Role="User" EntitySet="User" />
             <End Role="Review" EntitySet="Review" />
           </AssociationSet>
@@ -201,6 +202,7 @@
           <Property Name="Rating" Type="Decimal" Nullable="false" Precision="2" Scale="1" />
           <NavigationProperty Name="Book" Relationship="FinalProjectModel.FK_Review_Book" FromRole="Review" ToRole="Book" />
           <NavigationProperty Name="User" Relationship="FinalProjectModel.FK_Review_User" FromRole="Review" ToRole="User" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <Association Name="FK_Review_Book">
           <End Type="FinalProjectModel.Book" Role="Book" Multiplicity="1" />
@@ -278,6 +280,7 @@
           <EntitySetMapping Name="Reviews">
             <EntityTypeMapping TypeName="FinalProjectModel.Review">
               <MappingFragment StoreEntitySet="Review">
+                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Rating" ColumnName="Rating" />
                 <ScalarProperty Name="Body" ColumnName="Body" />
                 <ScalarProperty Name="Subject" ColumnName="Subject" />

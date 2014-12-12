@@ -20,6 +20,7 @@ namespace BookReview.Models.Data
         public string Subject { get; set; }
         public string Body { get; set; }
         public decimal Rating { get; set; }
+        public System.DateTime Date { get; set; }
     
         public virtual Book Book { get; set; }
         public virtual User User { get; set; }
