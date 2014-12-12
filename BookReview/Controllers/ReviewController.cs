@@ -37,11 +37,10 @@ namespace BookReview.Controllers
         }
 
         // GET: Review/Create
-        public ActionResult Create()
-        {
-            ViewBag.BookID = new SelectList(db.Books, "ID", "Category");
-            ViewBag.UserID = new SelectList(db.Users, "ID", "Username");
-            return View();
+        public ActionResult Create() {
+          ViewBag.BookID = new SelectList(db.Books, "ID", "Category");
+          ViewBag.UserID = new SelectList(db.Users, "ID", "Username");
+          return View();
         }
 
         // POST: Review/Create
@@ -54,6 +53,7 @@ namespace BookReview.Controllers
             if (ModelState.IsValid)
             {
                 review.ID = Guid.NewGuid();
+                review.Date = DateTime.Now;
                 db.Reviews.Add(review);
                 db.SaveChanges();
                 return RedirectToAction("Index");

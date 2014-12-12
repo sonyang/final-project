@@ -20,10 +20,10 @@ namespace BookReview.Models.Data
         }
     
         public System.Guid ID { get; set; }
+        public string Title { get; set; }
         public string Category { get; set; }
         public string Publisher { get; set; }
         public string Author { get; set; }
-        public string Title { get; set; }
         public string ISBN10 { get; set; }
         public string ISBN13 { get; set; }
         public string CoverArt { get; set; }

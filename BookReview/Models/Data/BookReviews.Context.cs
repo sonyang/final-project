@@ -25,9 +25,9 @@ namespace BookReview.Models.Data
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Group> Groups { get; set; }
-        public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Book> Books { get; set; }
+        public virtual DbSet<Group> Groups { get; set; }
         public virtual DbSet<Review> Reviews { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }
