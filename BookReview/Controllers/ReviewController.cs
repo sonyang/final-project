@@ -54,12 +54,13 @@ namespace BookReview.Controllers
             if (ModelState.IsValid)
             {
                 review.ID = Guid.NewGuid();
+                review.BookID = 
                 db.Reviews.Add(review);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.BookID = new SelectList(db.Books, "ID", "Title", review.Book.Title);
+            ViewBag.BookID = new SelectList(db.Books, "ID", "Category", review.BookID);
             ViewBag.UserID = new SelectList(db.Users, "ID", "Username", review.UserID);
             return View(review);
         }

@@ -1,70 +1,78 @@
 ﻿@model BookReview.Models.Data.Book
 
 @{
-  ViewBag.Title = "Details";
-  Layout = "~/Views/Shared/_Layout.cshtml";
-  var Book = Model;
+    var user = AuthCookie.Current;
+}
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var Book = Model;
 }
 
 
 <header>
-  Details:
-  <h3>@Book.Title</h3>
-  <hr />
+    Details:
+    <h3>@Book.Title</h3>
+    <hr />
 </header>
 
 <div class="row">
-  <div class="col-md-3">
-    <a href="#" data-toggle="modal" data-target="#PopupModal">
-      <img class="img-responsive" src="@Book.CoverArt" alt="@Book.Title" style="width:200px;margin:5px auto" />
-    </a>
+    <div class="col-md-3">
+        <a href="#" data-toggle="modal" data-target="#PopupModal">
+            <img class="img-responsive" src="@Book.CoverArt" alt="@Book.Title" style="width:200px;margin:5px auto" />
+        </a>
 
-    <div id="PopupModal" class="modal fade">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <h4 class="modal-title">@Book.Title</h4>
-          </div>
-          <div class="modal-body">
-            <ul>
-              <li>Category: @Book.Category</li>
-              <li>Publisher: @Book.Publisher</li>
-              <li>Author: @Book.Author</li>
-              <li>ISBN 10: @Book.ISBN10</li>
-              <li>ISBN 13: @Book.ISBN13</li>
-              <li>Page Count: @Book.PageCount</li>
-            </ul>
-          </div>
+        <div id="PopupModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title">@Book.Title</h4>
+                    </div>
+                    <div class="modal-body">
+                        <ul>
+                            <li>Category: @Book.Category</li>
+                            <li>Publisher: @Book.Publisher</li>
+                            <li>Author: @Book.Author</li>
+                            <li>ISBN 10: @Book.ISBN10</li>
+                            <li>ISBN 13: @Book.ISBN13</li>
+                            <li>Page Count: @Book.PageCount</li>
+                        </ul>
+                    </div>
 
-          <div class="modal-footer"></div>
+                    <div class="modal-footer"></div>
 
+                </div>
+            </div>
         </div>
-      </div>
+
+
+
     </div>
 
+    <div class="col-md-8" id="sumcontainer">
+        <h3>Summary:</h3>
+        <p>@Book.Summary</p>
+    </div>
 
+    <div class="col-md-8">
 
-  </div>
-
-  <div class="col-md-8" id="sumcontainer">
-      <h3>Summary:</h3>
-      <p>@Book.Summary</p>
-  </div>
-
-  <div class="col-md-8">
-
-    <h4>Most Helpful Reviews</h4>
+        <h4>Most Helpful Reviews</h4>
 
         <a href="/review/create">Write A Review</a>
-  </div>
+    </div>
 
 </div>
 
 
 
 <p>
-  @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-  @Html.ActionLink("Back to Catalog", "Index")
+    @if (user.Groups.Contains("Administrator")) {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID })
+
+    }|
+
+    @Html.ActionLink("Back to Catalog", "Index")
 
 </p>

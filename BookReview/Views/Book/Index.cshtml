@@ -14,11 +14,13 @@
 <h3>Catalog</h3>
 <hr>
 
+@if (user.Groups.Contains("Administrator")||user.Groups.Contains("User")) {
 <p>
   <h5>
     @Html.ActionLink("  Add A New Book", "Create")
   </h5>
 </p>
+}
 
 <div class="container">
   <div class="row">
