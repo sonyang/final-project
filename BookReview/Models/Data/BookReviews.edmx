@@ -5,38 +5,12 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="FinalProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Book">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Category" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Publisher" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Author" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ISBN10" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="ISBN13" Type="nchar" MaxLength="13" Nullable="false" />
-          <Property Name="CoverArt" Type="nvarchar" MaxLength="256" />
-          <Property Name="PageCount" Type="int" Nullable="false" />
-          <Property Name="Summary" Type="nvarchar(max)" Nullable="false" />
-        </EntityType>
         <EntityType Name="Group">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Review">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="BookID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="UserID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Subject" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Body" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Rating" Type="decimal" Precision="2" Scale="1" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -56,30 +30,6 @@
           <Property Name="UserID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="GroupID" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Review_Book">
-          <End Role="Book" Type="Self.Book" Multiplicity="1" />
-          <End Role="Review" Type="Self.Review" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Book">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Review">
-              <PropertyRef Name="BookID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Review_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="Review" Type="Self.Review" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Review">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_UserGroup_Group">
           <End Role="Group" Type="Self.Group" Multiplicity="1" />
           <End Role="UserGroup" Type="Self.UserGroup" Multiplicity="*" />
@@ -105,19 +55,9 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="FinalProjectModelStoreContainer">
-          <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Review" EntityType="Self.Review" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserGroup" EntityType="Self.UserGroup" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Review_Book" Association="Self.FK_Review_Book">
-            <End Role="Book" EntitySet="Book" />
-            <End Role="Review" EntitySet="Review" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Review_User" Association="Self.FK_Review_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="Review" EntitySet="Review" />
-          </AssociationSet>
           <AssociationSet Name="FK_UserGroup_Group" Association="Self.FK_UserGroup_Group">
             <End Role="Group" EntitySet="Group" />
             <End Role="UserGroup" EntitySet="UserGroup" />
@@ -149,7 +89,6 @@
           <Property Name="FirstName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="LastName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Groups" Relationship="Self.UserGroup" FromRole="User" ToRole="Group" />
-          <NavigationProperty Name="Reviews" Relationship="FinalProjectModel.FK_Review_User" FromRole="User" ToRole="Review" />
         </EntityType>
         <Association Name="UserGroup">
           <End Role="Group" Type="Self.Group" Multiplicity="*" />
@@ -162,70 +101,7 @@
             <End Role="Group" EntitySet="Groups" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
-          <EntitySet Name="Books" EntityType="FinalProjectModel.Book" />
-          <EntitySet Name="Reviews" EntityType="FinalProjectModel.Review" />
-          <AssociationSet Name="FK_Review_Book" Association="FinalProjectModel.FK_Review_Book">
-            <End Role="Book" EntitySet="Books" />
-            <End Role="Review" EntitySet="Reviews" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Review_User" Association="FinalProjectModel.FK_Review_User">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Review" EntitySet="Reviews" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Book">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Guid" Nullable="false" />
-          <Property Name="Category" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Publisher" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Author" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ISBN10" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="ISBN13" Type="String" Nullable="false" MaxLength="13" FixedLength="true" Unicode="true" />
-          <Property Name="CoverArt" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="PageCount" Type="Int32" Nullable="false" />
-          <Property Name="Summary" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Reviews" Relationship="FinalProjectModel.FK_Review_Book" FromRole="Book" ToRole="Review" />
-        </EntityType>
-        <EntityType Name="Review">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Guid" Nullable="false" />
-          <Property Name="BookID" Type="Guid" Nullable="false" />
-          <Property Name="UserID" Type="Guid" Nullable="false" />
-          <Property Name="Subject" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Body" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Rating" Type="Decimal" Nullable="false" Precision="2" Scale="1" />
-          <NavigationProperty Name="Book" Relationship="FinalProjectModel.FK_Review_Book" FromRole="Review" ToRole="Book" />
-          <NavigationProperty Name="User" Relationship="FinalProjectModel.FK_Review_User" FromRole="Review" ToRole="User" />
-        </EntityType>
-        <Association Name="FK_Review_Book">
-          <End Type="FinalProjectModel.Book" Role="Book" Multiplicity="1" />
-          <End Type="FinalProjectModel.Review" Role="Review" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Book">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Review">
-              <PropertyRef Name="BookID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Review_User">
-          <End Type="FinalProjectModel.User" Role="User" Multiplicity="1" />
-          <End Type="FinalProjectModel.Review" Role="Review" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Review">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -259,34 +135,6 @@
               <ScalarProperty Name="ID" ColumnName="UserID" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="Books">
-            <EntityTypeMapping TypeName="FinalProjectModel.Book">
-              <MappingFragment StoreEntitySet="Book">
-                <ScalarProperty Name="Summary" ColumnName="Summary" />
-                <ScalarProperty Name="PageCount" ColumnName="PageCount" />
-                <ScalarProperty Name="CoverArt" ColumnName="CoverArt" />
-                <ScalarProperty Name="ISBN13" ColumnName="ISBN13" />
-                <ScalarProperty Name="ISBN10" ColumnName="ISBN10" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Author" ColumnName="Author" />
-                <ScalarProperty Name="Publisher" ColumnName="Publisher" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Reviews">
-            <EntityTypeMapping TypeName="FinalProjectModel.Review">
-              <MappingFragment StoreEntitySet="Review">
-                <ScalarProperty Name="Rating" ColumnName="Rating" />
-                <ScalarProperty Name="Body" ColumnName="Body" />
-                <ScalarProperty Name="Subject" ColumnName="Subject" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="BookID" ColumnName="BookID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -1,17 +1,97 @@
 ﻿@{
     ViewBag.Title = "Contact";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+<div id="contactAddress">
+    <h2>@ViewBag.Title.</h2>
+    <h4>@ViewBag.Message</h4>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+    <address>
+        Novel Busters<br />
+        3301 West 18th Avenue<br />
+        Emporia, KS 66801<br />
+        <abbr title="Phone">P:</abbr>
+        555.210.4765
+    </address>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+    <address>
+        <strong>Support:</strong>   <a href="mailto:Support@novelbusters.com">Support@novelbusters.com</a><br />
+        <strong>Marketing:</strong> <a href="mailto:Marketing@novelbusters.com">Marketing@novelbusters.com</a>
+    </address>
+</div>
+
+<br />
+
+<div id="staff">
+    <h4>Staff</h4>
+    <p>
+        Laura Ssavanh
+        <br />
+        <a href="mailto:lssavanh@stumail.fhtc.edu">lssavanh@stumail.fhtc.edu</a>
+    </p>
+    <p>
+        Tiffany Francis
+        <br />
+        <a href="mailto:tfrancis@stumail.fhtc.edu">tfrancis@stumail.fhtc.edu</a>
+    </p>
+
+    <p>
+        Sonya Nguyen
+        <br />
+        <a href="mailto:snguyen@stumail.fhtc.edu">snguyen@stumail.fhtc.edu</a>
+    </p>
+
+    <p>
+        Enrique Loera
+        <br />
+        <a href="mailto:eloera@stumail.fhtc.edu">eloera@stumail.fhtc.edu</a>
+    </p>
+
+    <p>
+        Yessenia Sosa
+        <br />
+        <a href="mailto:ysosa@stumail.fhtc.edu">ysosa@stumail.fhtc.edu</a>
+    </p>
+</div>
+
+<div class="container">
+    <div id="staff" class="staff">
+        <h2>The Crew</h2>
+    </div>
+    <div class="avatar-icons">
+        <ul class="members">
+            <li class="member">
+                <div class="avatarWrapper">
+                    <img src="@Url.Content("~/content/images/lion.jpg")" alt="lion" />
+                </div>
+                    <h5>Laura Ssavanh</h5>
+                    <h6>Team Captain</h6>
+                    <ul class="social">
+                        <li>
+                            <a href="http://twitter.com/ITSLAURALAURA"><img src="@Url.Content("~/content/images/Twitter_logo_blue.png")" alt="twitter" /> 
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="bio">
+                        Laura is a web designer. ksdjf lkjsldkf jlksjdlk fjl;ksdjl;fkjlskdj fl;ksjdl;fkj slkdjfl k;sdjl;fkjsdl;kfj
+                    </p>                
+            </li>
+
+            <li class="member">
+                <div class="avatar-wrapper">
+                    <img src="http://wearefixel.com/wp-content/uploads/2013/09/default-dan.jpg" class="avatar avatar-default" alt="">
+                   
+                    <div class="overlay"></div>
+                </div>
+                <h4>Dan Philibin</h4>
+                <h6>Developer</h6>
+                <ul class="social">
+                    <li><a href=""><img src="@Url.Content("~/content/images/Twitter_logo_blue.png")" alt="twitter" /> </a></li>
+                </ul>
+                <p class="bio"></p>
+            </li>
+
+        </ul>
+    </div>
+</div>
+
+

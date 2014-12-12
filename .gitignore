@@ -5,3 +5,4 @@
 /BookReview/bin
 /BookReview/obj/Debug
 /packages
+*.suo
