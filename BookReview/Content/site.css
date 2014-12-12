@@ -11,6 +11,7 @@
   width: 75%;
   border-style: solid;
   border-color: #BF5A15;
+  border-width: 1px;
   margin-top: 20px;
 }
 .dl-horizontal dt {
@@ -45,7 +46,7 @@ footer {
 }
 .navbar-inverse {
   background-color: #777777;
-  border-width: 2px;
+  border-width: 1px;
   border-color: #BF5A15;
 }
 .navbar-inverse .navbar-nav > li > a {
