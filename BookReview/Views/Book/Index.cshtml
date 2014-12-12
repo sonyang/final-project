@@ -1,0 +1,53 @@
+﻿@model IEnumerable<BookReview.Models.Data.Book>
+
+@{
+  var user = AuthCookie.Current;
+}
+
+@{
+  ViewBag.Title = "Index";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+  var books = Model;
+
+}
+
+<h3>Catalog</h3>
+<hr>
+
+<p>
+  <h5>
+    @Html.ActionLink("  Add A New Book", "Create")
+  </h5>
+</p>
+
+<div class="container">
+  <div class="row">
+    @foreach (var a in books.OrderBy(x => x.Title)) {
+      <div class="col-md-3">
+        <section class="panel panel-info">
+          <div class="panel-heading" style="height:53px;">@a.Title</div>
+          <div class="panel-body text-center">
+            <img src="@a.CoverArt" alt="@a.Title" style="width: auto; height:195px" />
+          </div>
+
+          <div class="panel-footer panel-info">
+            <a href="@Url.Action("Details", "Book", new { id = a.ID })">
+              <span title="Information" style="color:#777777;"><i class="fa fa-info fa-lg"></i></span>
+            </a>
+
+            @if (user.Groups.Contains("Administrator")) {
+              <a href="@Url.Action("Delete","Book",new{id = a.ID})">
+                <span id="rightside" style="color:red;" title="Delete"><i class="fa fa-times"></i></span>
+              </a>
+              <a href="@Url.Action("Edit", "Book", new { id = a.ID })">
+                <span id="rightside" style="color:#777777;" title="Edit"><i class="fa fa-pencil-square-o fa-lg"></i></span>
+              </a>
+            }
+
+          </div>
+        </section>
+      </div>
+    }
+
+  </div>
+</div>
