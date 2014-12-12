@@ -2,16 +2,16 @@
   padding-top: 60px;
   padding-bottom: 20px;
   font-family: Georgia, 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  color: #EFEFEF;
+  color: #777777;
 }
 .body-content {
   padding-left: 15px;
   padding-right: 15px;
-  background-color: #777777;
+  background-color: #EFEFEF;
   width: 75%;
-  border-width: 2px;
   border-style: solid;
   border-color: #BF5A15;
+  border-width: 1px;
   margin-top: 20px;
 }
 .dl-horizontal dt {
@@ -46,7 +46,7 @@ footer {
 }
 .navbar-inverse {
   background-color: #777777;
-  border-width: 2px;
+  border-width: 1px;
   border-color: #BF5A15;
 }
 .navbar-inverse .navbar-nav > li > a {
@@ -56,7 +56,7 @@ footer {
   color: #BF5A15;
 }
 a {
-  color: #EFEFEF;
+  color: #777777;
 }
 a:hover {
   color: #BF5A15;

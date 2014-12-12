@@ -3537,8 +3537,8 @@ select[multiple].form-group-lg .form-control {
 
 .btn-primary {
     color: #fff;
-    background-color: #337ab7;
-    border-color: #2e6da4;
+    background-color: #777777;
+    border-color: #777777;
 }
 
     .btn-primary:hover,
@@ -3548,8 +3548,8 @@ select[multiple].form-group-lg .form-control {
     .btn-primary.active,
     .open > .dropdown-toggle.btn-primary {
         color: #fff;
-        background-color: #286090;
-        border-color: #204d74;
+        background-color: #BF5A15;
+        border-color: #BF5A15;
     }
 
     .btn-primary:active,
@@ -6206,7 +6206,7 @@ a.list-group-item-danger {
 
 .panel-footer {
     padding: 10px 15px;
-    background-color: #EFEFEF;
+    background-color: #777777;
     border-top: 1px solid #ddd;
     border-bottom-right-radius: 3px;
     border-bottom-left-radius: 3px;
@@ -6458,26 +6458,26 @@ a.list-group-item-danger {
     }
 
 .panel-primary {
-    border-color: #337ab7;
+    border-color: #BF5A15;
 }
 
     .panel-primary > .panel-heading {
         color: #fff;
-        background-color: #337ab7;
-        border-color: #337ab7;
+        background-color: #BF5A15;
+        border-color: #BF5A15;
     }
 
         .panel-primary > .panel-heading + .panel-collapse > .panel-body {
-            border-top-color: #337ab7;
+            border-top-color: #BF5A15;
         }
 
         .panel-primary > .panel-heading .badge {
-            color: #337ab7;
+            color: #BF5A15;
             background-color: #fff;
         }
 
     .panel-primary > .panel-footer + .panel-collapse > .panel-body {
-        border-bottom-color: #337ab7;
+        border-bottom-color: #BF5A15;
     }
 
 .panel-success {
@@ -6504,26 +6504,26 @@ a.list-group-item-danger {
     }
 
 .panel-info {
-    border-color: #bce8f1;
+    border-color: #BF5A15;
 }
 
     .panel-info > .panel-heading {
-        color: #BF5A15;
-        background-color: #EFEFEF;
-        border-color: #bce8f1;
+        color: #efefef;
+        background-color: #777777;
+        border-color: #BF5A15;
     }
 
         .panel-info > .panel-heading + .panel-collapse > .panel-body {
-            border-top-color: #bce8f1;
+            border-top-color: #BF5A15;
         }
 
         .panel-info > .panel-heading .badge {
             color: #d9edf7;
-            background-color: #31708f;
+            background-color: #BF5A15;
         }
 
     .panel-info > .panel-footer + .panel-collapse > .panel-body {
-        border-bottom-color: #bce8f1;
+        border-bottom-color: #BF5A15;
     }
 
 .panel-warning {

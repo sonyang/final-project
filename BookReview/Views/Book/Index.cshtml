@@ -34,7 +34,7 @@
 
           <div class="panel-footer panel-info">
             <a href="@Url.Action("Details", "Book", new { id = a.ID })">
-              <span title="Information" style="color:#777777;"><i class="fa fa-info fa-lg"></i></span>
+              <span title="Information" style="color:#EFEFEF;"><i class="fa fa-info fa-lg"></i></span>
             </a>
 
             @if (user.Groups.Contains("Administrator")) {
@@ -42,7 +42,7 @@
                 <span id="rightside" style="color:red;" title="Delete"><i class="fa fa-times"></i></span>
               </a>
               <a href="@Url.Action("Edit", "Book", new { id = a.ID })">
-                <span id="rightside" style="color:#777777;" title="Edit"><i class="fa fa-pencil-square-o fa-lg"></i></span>
+                <span id="rightside" style="color:#EFEFEF;" title="Edit"><i class="fa fa-pencil-square-o fa-lg"></i></span>
               </a>
             }
 
