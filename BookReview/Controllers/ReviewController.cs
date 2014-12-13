@@ -54,8 +54,8 @@ namespace BookReview.Controllers
             if (ModelState.IsValid)
             {
                 review.ID = Guid.NewGuid();
-                review.BookID = 
-                db.Reviews.Add(review);
+                //review.BookID = 
+                //db.Reviews.Add(review);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
