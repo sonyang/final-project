@@ -131,17 +131,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ReviewController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AuthenticationModel.cs" />
     <Compile Include="Models\Cookies\AuthCookie.cs" />
-    <Compile Include="Models\Data\Book.cs">
-      <DependentUpon>BookReviews.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Data\BookReviews.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -160,13 +155,9 @@
     <Compile Include="Models\Data\Group.cs">
       <DependentUpon>BookReviews.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Data\Review.cs">
-      <DependentUpon>BookReviews.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Data\User.cs">
       <DependentUpon>BookReviews.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Google\Books\Search.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -251,16 +242,6 @@
     <Content Include="Scripts\site.min.js.map">
       <DependentUpon>site.min.js</DependentUpon>
     </Content>
-    <Content Include="Views\Book\Create.cshtml" />
-    <Content Include="Views\Book\Delete.cshtml" />
-    <Content Include="Views\Book\Details.cshtml" />
-    <Content Include="Views\Book\Edit.cshtml" />
-    <Content Include="Views\Book\Index.cshtml" />
-    <Content Include="Views\Review\Create.cshtml" />
-    <Content Include="Views\Review\Delete.cshtml" />
-    <Content Include="Views\Review\Details.cshtml" />
-    <Content Include="Views\Review\Edit.cshtml" />
-    <Content Include="Views\Review\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

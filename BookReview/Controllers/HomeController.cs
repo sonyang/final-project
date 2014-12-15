@@ -7,8 +7,8 @@ namespace BookReview.Controllers {
     private AuthCookie user = AuthCookie.Current;
 
     public ActionResult Index() {
-      bool isAdmin = user.Groups.Contains("Administrator");
-      bool isUser = user.Groups.Contains("User");
+      bool isAdmin = user.Groups.Contains("Administrator");  //WILL WORK THROUGHOUT THE PROJECT
+      bool isUSer = user.Groups.Contains("User"); //THAT IS WHAT RETURNS
       return View();
     }
 
