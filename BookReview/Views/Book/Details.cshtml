@@ -1,78 +1,120 @@
-﻿@model BookReview.Models.Data.Book
+﻿@using BookReview.Models.Cookies;
+@using BookReview.Controllers;
+@model BookReview.Models.Data.Book
 
 @{
-    var user = AuthCookie.Current;
+  var user = AuthCookie.Current;
 }
 
 @{
-    ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-    var Book = Model;
+  ViewBag.Title = "Details";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+  var Book = Model;
 }
 
 
 <header>
-    Details:
-    <h3>@Book.Title</h3>
-    <hr />
+  Details:
+  <h3>@Book.Title</h3>
+  <hr />
 </header>
 
 <div class="row">
-    <div class="col-md-3">
-        <a href="#" data-toggle="modal" data-target="#PopupModal">
-            <img class="img-responsive" src="@Book.CoverArt" alt="@Book.Title" style="width:200px;margin:5px auto" />
-        </a>
+  <div class="col-md-3">
+    <a href="#" data-toggle="modal" data-target="#PopupModal">
+      <img class="img-responsive" src="@Book.CoverArt" alt="@Book.Title" style="width:200px;margin:5px auto" />
+    </a>
 
-        <div id="PopupModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                        <h4 class="modal-title">@Book.Title</h4>
-                    </div>
-                    <div class="modal-body">
-                        <ul>
-                            <li>Category: @Book.Category</li>
-                            <li>Publisher: @Book.Publisher</li>
-                            <li>Author: @Book.Author</li>
-                            <li>ISBN 10: @Book.ISBN10</li>
-                            <li>ISBN 13: @Book.ISBN13</li>
-                            <li>Page Count: @Book.PageCount</li>
-                        </ul>
-                    </div>
+    <div id="PopupModal" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title">@Book.Title</h4>
+          </div>
+          <div class="modal-body">
+            <ul>
+              <li>Category: @Book.Category</li>
+              <li>Publisher: @Book.Publisher</li>
+              <li>Author: @Book.Author</li>
+              <li>ISBN 10: @Book.ISBN10</li>
+              <li>ISBN 13: @Book.ISBN13</li>
+              <li>Page Count: @Book.PageCount</li>
+            </ul>
+          </div>
 
-                    <div class="modal-footer"></div>
+          <div class="modal-footer"></div>
 
-                </div>
-            </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+
+  <div class="col-md-8" id="sumcontainer">
+    <h3>Summary:</h3>
+    <p>@Book.Summary</p>
+  </div>
+
+</div>
+<div class="row">
+
+  <div class="col-md-12">
+    <form action="@Url.Action("Details", "book", new { id = Model.ID }))" method="post">
+      <input type="hidden" name="BookID" value="@Model.ID" />
+      <input type="hidden" name="UserID" value="@AuthCookie.Current.ID" />
+      <input type="hidden" name="Date" value= Datetime.now />
+      
+
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-group-addon">Subject</span>
+            <input class="form-control" type="text" name="Subject" placeholder="Subject" />
+          </div>
         </div>
 
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-group-addon">Body</span>
+            <input class="form-control" type="text" name="Body" placeholder="Body" />
+          </div>
+        </div>
 
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-group-addon">Rating</span>
+            <input class="form-control" type="text" name="Rating" placeholder="Rating" />
+          </div>
+        </div>
 
-    </div>
+      @*<div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+          <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+      </div>*@
 
-    <div class="col-md-8" id="sumcontainer">
-        <h3>Summary:</h3>
-        <p>@Book.Summary</p>
-    </div>
+      <a href="@Url.Action("Details", "book", new { id = Model.ID })">Post</a>
 
-    <div class="col-md-8">
+    </form>
+    <h4>Most Helpful Reviews</h4>
 
-        <h4>Most Helpful Reviews</h4>
+    <a href="/review/create">Write A Review</a>
+  </div>
 
-        <a href="/review/create">Write A Review</a>
-    </div>
+ 
 
 </div>
 
 
 
 <p>
-    @if (user.Groups.Contains("Administrator")) {
-        @Html.ActionLink("Edit", "Edit", new { id = Model.ID })
+  @if (user.Groups.Contains("Administrator")) {
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID })
 
-    }|
+  }|
 
-    @Html.ActionLink("Back to Catalog", "Index")
+  @Html.ActionLink("Back to Catalog", "Index")
 
 </p>
