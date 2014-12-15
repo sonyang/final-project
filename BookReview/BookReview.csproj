@@ -166,6 +166,7 @@
     <Compile Include="Models\Data\User.cs">
       <DependentUpon>BookReviews.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Google\Books\Search.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
