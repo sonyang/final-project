@@ -1,78 +1,140 @@
-﻿@model BookReview.Models.Data.Book
+﻿@using BookReview.Models.Cookies;
+@model BookReview.Models.Data.Book
+
 
 @{
-    var user = AuthCookie.Current;
+  var user = AuthCookie.Current;
 }
 
 @{
-    ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-    var Book = Model;
+  ViewBag.Title = "Details";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+  var Book = Model;
 }
 
 
 <header>
-    Details:
-    <h3>@Book.Title</h3>
-    <hr />
+  Details:
+  <h3>@Book.Title</h3>
+  <hr />
 </header>
 
 <div class="row">
-    <div class="col-md-3">
-        <a href="#" data-toggle="modal" data-target="#PopupModal">
-            <img class="img-responsive" src="@Book.CoverArt" alt="@Book.Title" style="width:200px;margin:5px auto" />
-        </a>
+  <div class="col-md-3">
+    <a href="#" data-toggle="modal" data-target="#PopupModal">
+      <img class="img-responsive" src="@Book.CoverArt" alt="@Book.Title" style="width:200px;margin:5px auto" />
+    </a>
 
-        <div id="PopupModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                        <h4 class="modal-title">@Book.Title</h4>
-                    </div>
-                    <div class="modal-body">
-                        <ul>
-                            <li>Category: @Book.Category</li>
-                            <li>Publisher: @Book.Publisher</li>
-                            <li>Author: @Book.Author</li>
-                            <li>ISBN 10: @Book.ISBN10</li>
-                            <li>ISBN 13: @Book.ISBN13</li>
-                            <li>Page Count: @Book.PageCount</li>
-                        </ul>
-                    </div>
+    <div id="PopupModal" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title">@Book.Title</h4>
+          </div>
+          <div class="modal-body">
+            <ul>
+              <li>Category: @Book.Category</li>
+              <li>Publisher: @Book.Publisher</li>
+              <li>Author: @Book.Author</li>
+              <li>ISBN 10: @Book.ISBN10</li>
+              <li>ISBN 13: @Book.ISBN13</li>
+              <li>Page Count: @Book.PageCount</li>
+            </ul>
+          </div>
 
-                    <div class="modal-footer"></div>
+          <div class="modal-footer"></div>
 
-                </div>
-            </div>
         </div>
-
-
-
+      </div>
     </div>
+  </div>
 
-    <div class="col-md-8" id="sumcontainer">
-        <h3>Summary:</h3>
-        <p>@Book.Summary</p>
+  <div class="col-md-8" id="sumcontainer">
+    <h3>Summary:</h3>
+    <p>@Book.Summary</p>
+  </div>
+</div>
+
+<br />
+
+<div class="row">
+  <div class="col-md-3">
+    <a href="#" data-toggle="modal" data-target="#ReviewPopupModal">
+      Write a Review  <i class="fa fa-pencil"></i>
+    </a>
+
+    <div id="ReviewPopupModal" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <div class="row">
+              <div class="col-md-offset-1 col-md-10">
+                <form action="@Url.Action("SaveReview", "Book")" method="post">
+                  <input type="hidden" name="BookID" value="@Model.ID" />
+                  <input type="hidden" name="UserID" value="@AuthCookie.Current.ID" />
+                  <input type="hidden" name="Date" value="@DateTime.Now" />
+
+
+                  <div class="form-group">
+                    <div class="input-group">
+                      <span class="input-group-addon">Subject</span>
+                      <input class="form-control" type="text" name="Subject" placeholder="Subject" />
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="input-group">
+                      <span class="input-group-addon">Body</span>
+                      <input class="form-control" type="text" name="Body" placeholder="Tell the world what you think of this product." />
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="input-group">
+                      <span class="input-group-addon">Rating</span>
+                      <input class="form-control" type="text" name="Rating" placeholder="Rating" />
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+
+                    <input type="submit" value="Create" class="btn btn-default" />
+                  </div>
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+</div>
 
-    <div class="col-md-8">
-
-        <h4>Most Helpful Reviews</h4>
-
-        <a href="/review/create">Write A Review</a>
+<div class="container" id="ratingsection">
+  <div class="row">
+    <div class="col-md-12">
+      <h4 style="color:#fff">Most Helpful Reviews</h4>
+      @foreach (var r in Model.Reviews) {
+        <p>Rating: @r.Rating</p>
+        <p>Subject: @r.Subject</p>
+        <p>Body: @r.Body</p>
+        <hr />
+      }
     </div>
-
+  </div>
 </div>
 
 
 
+
 <p>
-    @if (user.Groups.Contains("Administrator")) {
-        @Html.ActionLink("Edit", "Edit", new { id = Model.ID })
+  @if (user.Groups.Contains("Administrator")) {
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID })
 
-    }|
+  }|
 
-    @Html.ActionLink("Back to Catalog", "Index")
-
+  @Html.ActionLink("Back to Catalog", "Index")
 </p>

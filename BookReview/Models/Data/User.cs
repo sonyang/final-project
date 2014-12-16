@@ -16,8 +16,8 @@ namespace BookReview.Models.Data
     {
         public User()
         {
-            this.Groups = new HashSet<Group>();
             this.Reviews = new HashSet<Review>();
+            this.Groups = new HashSet<Group>();
         }
     
         public System.Guid ID { get; set; }
@@ -26,7 +26,7 @@ namespace BookReview.Models.Data
         public string FirstName { get; set; }
         public string LastName { get; set; }
     
-        public virtual ICollection<Group> Groups { get; set; }
         public virtual ICollection<Review> Reviews { get; set; }
+        public virtual ICollection<Group> Groups { get; set; }
     }
 }
