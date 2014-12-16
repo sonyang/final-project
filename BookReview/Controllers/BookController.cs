@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BookReview.Models.Data;
+using BookReview.Models.Cookies;
 
 namespace BookReview.Controllers
 {
@@ -19,7 +20,7 @@ namespace BookReview.Controllers
         {
             return View(db.Books.ToList());
         }
-
+        [HttpGet]
         // GET: Book/Details/5
         public ActionResult Details(Guid? id)
         {
@@ -33,6 +34,22 @@ namespace BookReview.Controllers
                 return HttpNotFound();
             }
             return View(book);
+        }
+
+      [HttpPost]
+        public ActionResult SaveReview(Review review) {
+          if (AuthCookie.Current.ID == Guid.Empty) { return HttpNotFound(); }
+        
+          if (ModelState.IsValid) {
+            review.ID = Guid.NewGuid();
+            db.Reviews.Add(review);
+            db.SaveChanges();
+            return RedirectToAction("Details", new { id = review.BookID });
+          }
+
+          //return null;
+
+          return RedirectToAction("Index", "Home");
         }
 
         // GET: Book/Create
