@@ -45,16 +45,18 @@ namespace BookReview.Controllers {
     // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public ActionResult Create(Review review) {
-
+    public ActionResult Create(Review review, Book book) {
+      
       if (ModelState.IsValid) {
         review.ID = Guid.NewGuid();
         db.Reviews.Add(review);
         db.SaveChanges();
-        return RedirectToAction("Index");
-      }
 
-      ViewBag.BookTitle = new SelectList(db.Books, "Title", "Title", review.Book.Title);
+        return RedirectToAction("Index", "Book", Guid.NewGuid());
+      }
+      
+
+      ViewBag.BookTitle = new SelectList(db.Books, "ID", "Category", review.Book.Title);
       ViewBag.UserID = new SelectList(db.Users, "ID", "Username", review.UserID);
       return View(review);
     }

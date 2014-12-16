@@ -1,6 +1,6 @@
 ﻿@using BookReview.Models.Cookies;
-@using BookReview.Controllers;
 @model BookReview.Models.Data.Book
+@using BookReview.Models.Data;
 
 @{
   var user = AuthCookie.Current;
@@ -48,9 +48,6 @@
         </div>
       </div>
     </div>
-
-
-
   </div>
 
   <div class="col-md-8" id="sumcontainer">
@@ -59,55 +56,55 @@
   </div>
 
 </div>
-<div class="row">
+<br />
 
+
+<div class="row">
   <div class="col-md-12">
-    <form action="@Url.Action("Details", "book", new { id = Model.ID }))" method="post">
+    <form action="@Url.Action("Details", "Book", new { id = Model.ID })" method="post">
+      @using (Html.BeginForm("Details", "Book"))
+
       <input type="hidden" name="BookID" value="@Model.ID" />
       <input type="hidden" name="UserID" value="@AuthCookie.Current.ID" />
-      <input type="hidden" name="Date" value= Datetime.now />
-      
+      <input type="hidden" name="Date" value=Datetime.now />
 
-        <div class="form-group">
-          <div class="input-group">
-            <span class="input-group-addon">Subject</span>
-            <input class="form-control" type="text" name="Subject" placeholder="Subject" />
-          </div>
+
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon">Subject</span>
+          <input class="form-control" type="text" name="Databinding" placeholder="Subject" />
         </div>
+      </div>
 
-        <div class="form-group">
-          <div class="input-group">
-            <span class="input-group-addon">Body</span>
-            <input class="form-control" type="text" name="Body" placeholder="Body" />
-          </div>
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon">Body</span>
+          <input class="form-control" type="text" name="Body" placeholder="Body" />
         </div>
+      </div>
 
-        <div class="form-group">
-          <div class="input-group">
-            <span class="input-group-addon">Rating</span>
-            <input class="form-control" type="text" name="Rating" placeholder="Rating" />
-          </div>
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon">Rating</span>
+          <input class="form-control" type="text" name="Rating" placeholder="Rating" />
         </div>
+      </div>
 
-      @*<div class="form-group">
+      <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
           <input type="submit" value="Create" class="btn btn-default" />
         </div>
-      </div>*@
+      </div>
 
-      <a href="@Url.Action("Details", "book", new { id = Model.ID })">Post</a>
+
+      <h4>Most Helpful Reviews</h4>
+
+      @*<a href="/review/create">Write A Review</a>*@
 
     </form>
-    <h4>Most Helpful Reviews</h4>
 
-    <a href="/review/create">Write A Review</a>
   </div>
-
- 
-
 </div>
-
-
 
 <p>
   @if (user.Groups.Contains("Administrator")) {
