@@ -62,7 +62,6 @@
 <div class="row">
   <div class="col-md-12">
     <form action="@Url.Action("SaveReview", "Book")" method="post">
-      <input type="hidden" name="ID" value=""/>
       <input type="hidden" name="BookID" value="@Model.ID" />
       <input type="hidden" name="UserID" value="@AuthCookie.Current.ID" />
       <input type="hidden" name="Date" value="@DateTime.Now" />
@@ -97,6 +96,9 @@
 
 
       <h4>Most Helpful Reviews</h4>
+      @foreach (var r in Model.Reviews) {
+        <p>@r.Subject</p>
+      }
 
       @*<a href="/review/create">Write A Review</a>*@
 
