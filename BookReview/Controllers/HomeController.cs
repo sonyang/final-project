@@ -13,13 +13,13 @@ namespace BookReview.Controllers {
     }
 
     public ActionResult About() {
-      ViewBag.Message = "Your application description page.";
+      ViewBag.Message = "What is Novel Busters?";
 
       return View();
     }
 
     public ActionResult Contact() {
-      ViewBag.Message = "Your contact page.";
+      ViewBag.Message = "Bussiness Office";
 
       return View();
     }
