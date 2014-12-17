@@ -50,7 +50,7 @@
     </div>
   </div>
 
-  <div class="col-md-8" id="sumcontainer">
+  <div class="col-md-8">
     <h3>Summary:</h3>
     <p>@Book.Summary</p>
   </div>
@@ -59,76 +59,68 @@
 <br />
 
 <div class="row">
-  <div class="col-md-3">
-    <a href="#" data-toggle="modal" data-target="#ReviewPopupModal">
-      Write a Review  <i class="fa fa-pencil"></i>
-    </a>
+  <div class=" col-md-3">
 
     <div id="ReviewPopupModal" class="modal fade">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <div class="row">
-              <div class="col-md-offset-1 col-md-10">
-                <form action="@Url.Action("SaveReview", "Book")" method="post">
-                  <input type="hidden" name="BookID" value="@Model.ID" />
-                  <input type="hidden" name="UserID" value="@AuthCookie.Current.ID" />
-                  <input type="hidden" name="Date" value="@DateTime.Now" />
-
-
-                  <div class="form-group">
-                    <div class="input-group">
-                      <span class="input-group-addon">Subject</span>
-                      <input class="form-control" type="text" name="Subject" placeholder="Subject" />
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <div class="input-group">
-                      <span class="input-group-addon">Body</span>
-                      <input class="form-control" type="text" name="Body" placeholder="Tell the world what you think of this product." />
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <div class="input-group">
-                      <span class="input-group-addon">Rating</span>
-                      <input class="form-control" type="text" name="Rating" placeholder="Rating" />
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-
-                    <input type="submit" value="Create" class="btn btn-default" />
-                  </div>
-
-                </form>
-              </div>
-            </div>
           </div>
+
+          <div class="modal-body">
+            <form action="@Url.Action("SaveReview", "Book")" method="post">
+              <input type="hidden" name="BookID" value="@Model.ID" />
+              <input type="hidden" name="UserID" value="@AuthCookie.Current.ID" />
+              <input type="hidden" name="Date" value="@DateTime.Now" />
+
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon">Subject</span>
+                  <input class="form-control" type="text" name="Subject" placeholder="Subject" />
+                </div>
+              </div>
+
+              <textarea type="text" name="Body" placeholder="Tell the world what you think of this product." wrap="hard" style="width:100%; height: 100px; "></textarea>
+
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon">Rating</span>
+                  <input class="form-control" type="text" name="Rating" placeholder="Rating" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <input type="submit" value="Post" class="btn btn-default" />
+              </div>
+            </form>
+          </div>
+
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="container" id="ratingsection">
-  <div class="row">
-    <div class="col-md-12">
-      <h4 style="color:#fff">Most Helpful Reviews</h4>
-      @foreach (var r in Model.Reviews) {
-        <p>Rating: @r.Rating</p>
-        <p>Subject: @r.Subject</p>
-        <p>Body: @r.Body</p>
-        <hr />
+
+  <div class="col-md-8">
+    <h4 style="color:#777">Most Helpful Reviews</h4>
+    <a href="#" data-toggle="modal" data-target="#ReviewPopupModal">
+      Write a Review  <i class="fa fa-pencil"></i>
+    </a>
+
+    <div style="width:100%;height:190px;overflow:scroll;overflow-y:scroll hidden;overflow-x:hidden;">
+      @foreach (var r in Model.Reviews.OrderByDescending(r => r.Date)) {
+
+        <p style="background-color:rgba(180, 180, 180, 0.21);"><b>Subject: @r.Subject</b> </p>
+        <p style="background-color:rgba(180, 180, 180, 0.15); white-space:normal;">Body: @r.Body</p>
+        <p style="background-color: rgba(180, 180, 180, 0.21);">Rating: @r.Rating /5</p>
+        <p style="background-color: rgba(180, 180, 180, 0.15); font-size:11px;">By: <i>@r.User.Username</i></p>
+        <br />
       }
+
     </div>
   </div>
 </div>
-
-
-
 
 <p>
   @if (user.Groups.Contains("Administrator")) {
