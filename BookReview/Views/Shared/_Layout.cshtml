@@ -33,7 +33,7 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">@user.DisplayName &#160;<i class="fa fa-cog"></i>  <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 @if (user.Groups.Contains("Administrator")) {
-                  <li><a href="#"><i class="fa fa-fw fa-users"></i> &#160; Manage Users</a></li>
+                  <li><a href="@Url.Action("Index","Users")"><i class="fa fa-fw fa-users"></i> &#160; Manage Users</a></li>
                   <li class="divider"></li>
                 }
                 <li><a href="@Url.Action("Logout", "Home")"><i class="fa fa-fw fa-power-off"></i> &#160; Logout</a></li>
