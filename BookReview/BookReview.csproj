@@ -167,6 +167,7 @@
     <Compile Include="Models\Data\User.cs">
       <DependentUpon>BookReviews.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Duplicates.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -234,7 +235,9 @@
       <DependentUpon>site.js</DependentUpon>
     </Content>
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

@@ -14,8 +14,8 @@
           <Property Name="Category" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Publisher" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Author" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ISBN10" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="ISBN13" Type="nchar" MaxLength="13" Nullable="false" />
+          <Property Name="ISBN10" Type="nchar" MaxLength="10" />
+          <Property Name="ISBN13" Type="nchar" MaxLength="13" />
           <Property Name="CoverArt" Type="nvarchar" MaxLength="256" />
           <Property Name="PageCount" Type="int" Nullable="false" />
           <Property Name="Summary" Type="nvarchar(max)" Nullable="false" />
@@ -37,7 +37,7 @@
           <Property Name="Subject" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Body" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Rating" Type="decimal" Precision="2" Scale="1" Nullable="false" />
-          <Property Name="Date" Type="date" />
+          <Property Name="Date" Type="datetime" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -159,8 +159,8 @@
           <Property Name="Category" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Publisher" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Author" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ISBN10" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="ISBN13" Type="String" Nullable="false" MaxLength="13" FixedLength="true" Unicode="true" />
+          <Property Name="ISBN10" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ISBN13" Type="String" MaxLength="13" FixedLength="true" Unicode="true" />
           <Property Name="CoverArt" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="PageCount" Type="Int32" Nullable="false" />
           <Property Name="Summary" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -184,7 +184,7 @@
           <Property Name="Subject" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Body" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Rating" Type="Decimal" Nullable="false" Precision="2" Scale="1" />
-          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Book" Relationship="FinalProjectModel.FK_Review_BookID" FromRole="Review" ToRole="Book" />
           <NavigationProperty Name="User" Relationship="FinalProjectModel.FK_Review_UserID" FromRole="Review" ToRole="User" />
         </EntityType>

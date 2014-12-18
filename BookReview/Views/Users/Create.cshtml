@@ -8,50 +8,49 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
-{
+@using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>User</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            <div class="input-group">
-                <span class="input-group-addon">x</span>
-                <input class="form-control" type="password" name="Password" placeholder="Password" />
+        <center>
+            <div class="form-group" id="createuser" style="width:50%">
+                <div class="input-group">
+                    <span class="input-group-addon">Username</span>
+                    <input class="form-control" type="text" name="Username" />
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+            <div class="form-group" id="createuser" style="width:50%">
+                <div class="input-group">
+                    <span class="input-group-addon">Password</span>
+                    <input class="form-control" type="password" name="Password" />
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+            <div class="form-group" id="createuser" style="width:50%">
+                <div class="input-group">
+                    <span class="input-group-addon">First Name</span>
+                    <input class="form-control" type="text" name="FirstName" />
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="form-group" id="createuser" style="width:50%">
+                <div class="input-group">
+                    <span class="input-group-addon">Last Name</span>
+                    <input class="form-control" type="text" name="LastName" />
+                </div>
             </div>
-        </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </center>
+
     </div>
 }
 

@@ -42,9 +42,13 @@ namespace BookReview.Controllers {
     [HttpPost]
     [ValidateAntiForgeryToken]
     public ActionResult Create(User user) {
-      if (ModelState.IsValid) {
+      
 
-        user.ID = Guid.NewGuid();
+
+      if (ModelState.IsValid) {
+        //using (var b = new BookEntities()) { 
+        //var duplicate = from x in b.Users.FirstOrDefault(x => x.Username ==)
+        //}
 
         if (user.Password == null || user.Username == null || user.FirstName == null || user.LastName == null) {
           Response.Write("<script>alert('Exception: Fields cannot be blank.')</script>");
@@ -54,6 +58,7 @@ namespace BookReview.Controllers {
             //Response.Write("<script>alert('Exception: valid.')</script>");
 
             if (Regex.IsMatch(user.Password, @"\p{Lu}") && Regex.IsMatch(user.Password, @"\d")) {
+              user.ID = Guid.NewGuid();
               user.Password = HashPassword(user.Password);
               db.Users.Add(user);
               db.SaveChanges();
@@ -71,7 +76,7 @@ namespace BookReview.Controllers {
 
 
       }
-
+  
       return View(user);
     }
     private string HashPassword(string plain) {
