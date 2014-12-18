@@ -14,7 +14,7 @@
 
 
 <header>
-  Details:
+  @ViewBag.Title
   <h3>@Book.Title</h3>
   <hr />
 </header>
@@ -22,7 +22,7 @@
 <div class="row">
   <div class="col-md-3">
     <a href="#" data-toggle="modal" data-target="#PopupModal">
-      <img class="img-responsive" src="@Book.CoverArt" alt="@Book.Title" style="width:200px;margin:5px auto" />
+      <img class="img-responsive" src="@Book.CoverArt" alt="@Book.Title" style="width:200px;margin:5px auto" title="More Details" />
     </a>
 
     <div id="PopupModal" class="modal fade">
@@ -60,7 +60,6 @@
 
 <div class="row">
   <div class=" col-md-3">
-
     <div id="ReviewPopupModal" class="modal fade">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -77,7 +76,7 @@
               <div class="form-group">
                 <div class="input-group">
                   <span class="input-group-addon">Subject</span>
-                  <input class="form-control" type="text" name="Subject" placeholder="Subject" />
+                  <input class="form-control" type="text" name="Subject" placeholder="subject" />
                 </div>
               </div>
 
@@ -86,7 +85,7 @@
               <div class="form-group">
                 <div class="input-group">
                   <span class="input-group-addon">Rating</span>
-                  <input class="form-control" type="text" name="Rating" placeholder="Rating" />
+                  <input class="form-control" type="text" name="Rating" placeholder="0.0 to 5.0" />
                 </div>
               </div>
 
@@ -124,9 +123,10 @@
 
 <p>
   @if (user.Groups.Contains("Administrator")) {
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID })
-
-  }|
+   <p> @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Delete", "Delete", new { id = Model.ID }) 
+  </p>
+  }
 
   @Html.ActionLink("Back to Catalog", "Index")
 </p>

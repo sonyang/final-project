@@ -1,6 +1,7 @@
 ﻿body {
   padding-top: 60px;
   padding-bottom: 20px;
+  font-family: 'Times New Roman', Times, serif;
 }
 .body-content {
   padding-left: 15px;
@@ -45,5 +46,15 @@ a:hover {
 }
 #ReviewPopupModal {
   margin: 15px;
+}
+header {
+  font-size: 25px;
+}
+#rightside {
+  clear: left;
+  float: right;
+}
+#indexBook {
+  padding-right: 5px;
 }
 /*# sourceMappingURL=site.css.map */
