@@ -138,53 +138,53 @@
           <EntitySet Name="Reviews" EntityType="FinalProjectModel.Review" />
           <EntitySet Name="Users" EntityType="FinalProjectModel.User" />
           <AssociationSet Name="FK_Review_BookID" Association="FinalProjectModel.FK_Review_BookID">
-            <End Role="Book" EntitySet="Books" />
-            <End Role="Review" EntitySet="Reviews" />
+            <End EntitySet="Books" Role="Book" />
+            <End EntitySet="Reviews" Role="Review" />
           </AssociationSet>
           <AssociationSet Name="FK_Review_UserID" Association="FinalProjectModel.FK_Review_UserID">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Review" EntitySet="Reviews" />
+            <End EntitySet="Users" Role="User" />
+            <End EntitySet="Reviews" Role="Review" />
           </AssociationSet>
           <AssociationSet Name="UserGroup" Association="FinalProjectModel.UserGroup">
-            <End Role="Group" EntitySet="Groups" />
-            <End Role="User" EntitySet="Users" />
+            <End EntitySet="Groups" Role="Group" />
+            <End EntitySet="Users" Role="User" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Book">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Guid" Nullable="false" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Category" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Publisher" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Author" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ISBN10" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="ISBN13" Type="String" MaxLength="13" FixedLength="true" Unicode="true" />
-          <Property Name="CoverArt" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="PageCount" Type="Int32" Nullable="false" />
-          <Property Name="Summary" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ID" Nullable="false" Type="Guid" />
+          <Property Name="Title" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="Category" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="Publisher" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="Author" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="ISBN10" MaxLength="10" FixedLength="true" Unicode="true" Type="String" />
+          <Property Name="ISBN13" MaxLength="13" FixedLength="true" Unicode="true" Type="String" />
+          <Property Name="CoverArt" MaxLength="256" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="PageCount" Nullable="false" Type="Int32" />
+          <Property Name="Summary" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
           <NavigationProperty Name="Reviews" Relationship="FinalProjectModel.FK_Review_BookID" FromRole="Book" ToRole="Review" />
         </EntityType>
         <EntityType Name="Group">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Guid" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ID" Nullable="false" Type="Guid" />
+          <Property Name="Name" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" Type="String" />
           <NavigationProperty Name="Users" Relationship="FinalProjectModel.UserGroup" FromRole="Group" ToRole="User" />
         </EntityType>
         <EntityType Name="Review">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Guid" Nullable="false" />
-          <Property Name="BookID" Type="Guid" Nullable="false" />
-          <Property Name="UserID" Type="Guid" Nullable="false" />
-          <Property Name="Subject" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Body" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Rating" Type="Decimal" Nullable="false" Precision="2" Scale="1" />
-          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="ID" Nullable="false" Type="Guid" />
+          <Property Name="BookID" Nullable="false" Type="Guid" />
+          <Property Name="UserID" Nullable="false" Type="Guid" />
+          <Property Name="Subject" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="Body" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="Rating" Nullable="false" Precision="2" Scale="1" Type="Decimal" />
+          <Property Name="Date" Precision="3" Type="DateTime" />
           <NavigationProperty Name="Book" Relationship="FinalProjectModel.FK_Review_BookID" FromRole="Review" ToRole="Book" />
           <NavigationProperty Name="User" Relationship="FinalProjectModel.FK_Review_UserID" FromRole="Review" ToRole="User" />
         </EntityType>
@@ -192,17 +192,17 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Guid" Nullable="false" />
-          <Property Name="Username" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="true" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="ID" Nullable="false" Type="Guid" />
+          <Property Name="Username" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="Password" Nullable="false" MaxLength="40" FixedLength="true" Unicode="true" Type="String" />
+          <Property Name="FirstName" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="LastName" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" Type="String" />
           <NavigationProperty Name="Reviews" Relationship="FinalProjectModel.FK_Review_UserID" FromRole="User" ToRole="Review" />
           <NavigationProperty Name="Groups" Relationship="FinalProjectModel.UserGroup" FromRole="User" ToRole="Group" />
         </EntityType>
         <Association Name="FK_Review_BookID">
-          <End Type="FinalProjectModel.Book" Role="Book" Multiplicity="1" />
-          <End Type="FinalProjectModel.Review" Role="Review" Multiplicity="*" />
+          <End Type="FinalProjectModel.Book" Multiplicity="1" Role="Book" />
+          <End Type="FinalProjectModel.Review" Multiplicity="*" Role="Review" />
           <ReferentialConstraint>
             <Principal Role="Book">
               <PropertyRef Name="ID" />
@@ -213,8 +213,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Review_UserID">
-          <End Type="FinalProjectModel.User" Role="User" Multiplicity="1" />
-          <End Type="FinalProjectModel.Review" Role="Review" Multiplicity="*" />
+          <End Type="FinalProjectModel.User" Multiplicity="1" Role="User" />
+          <End Type="FinalProjectModel.Review" Multiplicity="*" Role="Review" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="ID" />
@@ -225,8 +225,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="UserGroup">
-          <End Type="FinalProjectModel.Group" Role="Group" Multiplicity="*" />
-          <End Type="FinalProjectModel.User" Role="User" Multiplicity="*" />
+          <End Type="FinalProjectModel.Group" Multiplicity="*" Role="Group" />
+          <End Type="FinalProjectModel.User" Multiplicity="*" Role="User" />
         </Association>
         </Schema>
     </edmx:ConceptualModels>

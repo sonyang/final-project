@@ -5,10 +5,10 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="e03486dca6004e74a2410dc9bea7a4b4" Name="Diagram1" ShowGrid="true">
-        <EntityTypeShape EntityType="FinalProjectModel.Book" Width="1.5" PointX="7.375" PointY="1" />
-        <EntityTypeShape EntityType="FinalProjectModel.Group" Width="1.5" PointX="0.75" PointY="1.5" />
-        <EntityTypeShape EntityType="FinalProjectModel.Review" Width="1.5" PointX="5.25" PointY="1" />
-        <EntityTypeShape EntityType="FinalProjectModel.User" Width="1.5" PointX="3" PointY="1.125" />
+        <EntityTypeShape EntityType="FinalProjectModel.Book" PointX="0.75" PointY="0.75" Width="1.5" />
+        <EntityTypeShape EntityType="FinalProjectModel.Group" PointX="8.25" PointY="0.5" Width="1.5" />
+        <EntityTypeShape EntityType="FinalProjectModel.Review" PointX="3.375" PointY="0.75" Width="1.5" />
+        <EntityTypeShape EntityType="FinalProjectModel.User" PointX="5.5" PointY="0.75" Width="1.5" />
         <AssociationConnector Association="FinalProjectModel.FK_Review_BookID" />
         <AssociationConnector Association="FinalProjectModel.FK_Review_UserID" />
         <AssociationConnector Association="FinalProjectModel.UserGroup" />
