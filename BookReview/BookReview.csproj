@@ -167,7 +167,7 @@
     <Compile Include="Models\Data\User.cs">
       <DependentUpon>BookReviews.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Duplicates.cs" />
+    <Compile Include="Models\IsbnConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
