@@ -16,5 +16,19 @@ namespace BookReview {
       RouteConfig.RegisterRoutes(RouteTable.Routes);
       BundleConfig.RegisterBundles(BundleTable.Bundles);
     }
+    protected void Application_End() {
+      // When the application is shutting down.
+    }
+
+    protected void Session_Start() {
+      // User connects to site for the first time.
+      Session["DateNow"] = DateTime.Now;
+    }
+
+    protected void Session_End() {
+      // Session Timeout (20 minutes) or Browser Close.
+      //Session.Abandon(); // This is what calls Session_End().... infinite loop waiting to happen.
+    }
   }
+
 }
