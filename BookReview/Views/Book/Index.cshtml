@@ -15,20 +15,22 @@
 <hr>
 
 <p>
-  <h5>
-    @Html.ActionLink("  Add A New Book", "Create")
-    <i class="fa fa-plus-circle"></i>
-  </h5>
+  @if (user.Groups.Contains("Administrator")) {
+    <h5>
+      @Html.ActionLink("  Add A New Book", "Create")
+      <i class="fa fa-plus-circle"></i>
+    </h5>
+  }
 </p>
 
-  <div class="row">
+<div class="row">
   @foreach (var a in books.OrderBy(x => x.Title)) {
     <div class="col-md-3">
       <a href="@Url.Action("Details", "Book", new { id = a.ID })" id="indexBook">
         <img src="@a.CoverArt" alt="@a.Title" style="width: 195px; height:290px" title="Information" />
       </a>
       <br />
-       <span style="color:white;">-</span>
+      <span style="color:white;">-</span>
     </div>
 
   }
