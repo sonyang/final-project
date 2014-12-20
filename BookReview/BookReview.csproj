@@ -199,7 +199,6 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>BookReviews.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Grading.txt" />
     <Content Include="Models\Data\BookReviews.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>BookReviews.edmx</DependentUpon>
