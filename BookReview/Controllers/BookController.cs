@@ -62,11 +62,27 @@ namespace BookReview.Controllers {
     [ValidateAntiForgeryToken]
     public ActionResult Create(Book book) {
       if (ModelState.IsValid) {
-        book.ID = Guid.NewGuid();
-        db.Books.Add(book);
-        db.SaveChanges();
-        return RedirectToAction("Index");
+
+        if (book.ISBN10 == null && book.ISBN13 == null) {
+          Response.Write("<script>alert('Exception: Please Enter at least one ISBN number.')</script>");
+
+        }
+        else {
+          if (book.ISBN10 != null) {
+            book.ISBN13 = BookReview.Models.IsbnConverter.ConvertIsbn10(book.ISBN10);
+          }
+          if (book.ISBN13 != null) {
+            book.ISBN10 = BookReview.Models.IsbnConverter.ConvertIsbn13(book.ISBN13);
+          }
+
+          book.ID = Guid.NewGuid();
+          db.Books.Add(book);
+          db.SaveChanges();
+          return RedirectToAction("Index");
+        }
+
       }
+
 
       return View(book);
     }
