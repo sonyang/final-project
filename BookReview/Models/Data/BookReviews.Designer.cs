@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\eloera\Desktop\final-project\BookReview\Models\Data\BookReviews.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\ddrake\Desktop\final-project\BookReview\Models\Data\BookReviews.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
